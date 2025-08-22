@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-green: #004311;
+  --color-yellow: #e99719;
+}
+
+
+body {
+  font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
+}
+
+
+/* Hide scrollbar for all browsers */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+@keyframes moveRight {
+  0% {
+    left: 0%;
+    width: calc(20% - 32px);
+    margin: 0 16px;
+  }
+  50% {
+    width: calc(100% - 32px);
+    right: 0%;
+  }
+  100% {
+    right: 0%;
+    width: calc(20% - 32px);
+    margin: 0 16px;
+  }
+}
+.move-right-animation {
+  animation: moveRight 1s ease-in-out forwards;
+}
+
+@keyframes moveLeft {
+  0% {
+    right: 0%;
+    width: calc(20% - 32px);
+    margin: 0 16px;
+  }
+  33% {
+    width: calc(100% - 32px);
+  }
+  66% {
+    left: 0%;
+  }
+  100% {
+    left: 0%;
+    width: calc(20% - 32px);
+    margin: 0 16px;
+  }
+}
+.move-left-animation {
+  animation: moveLeft 1s ease-in-out forwards;
+}
+
+@keyframes rotateArrow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotateArrowBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+.rotate-arrow-animation {
+  animation: rotateArrow 0.2s ease-in-out 1s forwards;
+}
+
+.rotate-arrow-back-animation {
+  animation: rotateArrowBack 0.2s ease-in-out 1s forwards;
+}
