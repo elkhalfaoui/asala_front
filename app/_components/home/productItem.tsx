@@ -1,8 +1,9 @@
-import { Star, StarHalf } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Star, StarHalf } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Product } from "./products";
 
-const ProductItem = ({bgImg}: {bgImg: string}) => {
+const ProductItem = ({ product }: { product: Product }) => {
   return (
     <li>
       <Link
@@ -12,7 +13,7 @@ const ProductItem = ({bgImg}: {bgImg: string}) => {
         {/* Image container */}
         <div className="w-full aspect-3/4 overflow-hidden rounded-sm relative group">
           <Image
-            src={`/${bgImg}`}
+            src={`${product.imageCollection.main}`}
             alt="image"
             width={400}
             height={400}
@@ -21,7 +22,7 @@ const ProductItem = ({bgImg}: {bgImg: string}) => {
 
           {/* Overlay with content */}
           <div className="absolute inset-0 flex flex-col justify-end p-3 bg-gradient-to-t from-black/70 via-black/40 to-transparent text-white">
-            <h3 className="text-lg font-semibold">Product Title</h3>
+            <h3 className="text-lg font-semibold">{product.title}</h3>
             <div className="flex gap-0.5 text-yellow-400 mt-1">
               <Star size={16} />
               <Star size={16} />
@@ -30,7 +31,8 @@ const ProductItem = ({bgImg}: {bgImg: string}) => {
               <StarHalf size={16} />
             </div>
             <h4 className="mt-1">
-              <span className="text-sm text-zinc-300">starting from</span> 299
+              <span className="text-sm text-zinc-300">starting from</span>{" "}
+              {product.options?.[0]?.price}
               DH
             </h4>
           </div>

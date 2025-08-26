@@ -40,5 +40,5 @@ const Features = () => {
       </ul>
     </section>
   );
-}
-export default Features
+};
+export default Features;

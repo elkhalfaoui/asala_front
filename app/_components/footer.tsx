@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   Clock,
   Facebook,
@@ -7,8 +7,8 @@ import {
   LocationEdit,
   Mail,
   Phone,
-} from 'lucide-react';
-import Image from 'next/image';
+} from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -16,7 +16,13 @@ const Footer = () => {
       <ul className="md:container mx-auto p-4 grid grid-cols-1 gap-8 text-center lg:text-start  lg:grid-cols-3 lg:gap-4">
         <li className="flex flex-col gap-4">
           <Link href="/">
-            <Image src="/ASALA DESIGN 1.png" alt="logo" width={260} height={56} />
+            <Image
+              src="/ASALA DESIGN 1.png"
+              alt="logo"
+              width={260}
+              height={56}
+              priority
+            />
           </Link>
           <p className="text-zinc-600">
             Suivez-nous sur les réseaux sociaux pour être informé de nos
@@ -85,7 +91,7 @@ const Footer = () => {
           className="inline-flex items-center gap-1 underline text-green"
         >
           <span>elkhalfaoui</span>
-            <Github size={20} />
+          <Github size={20} />
         </a>
         &nbsp;Tous droits réservés
       </p>

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   ArrowLeft,
@@ -6,10 +6,10 @@ import {
   Medal,
   Plus,
   ShoppingBasket,
-} from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 const Hero = () => {
   const [hero, setHero] = useState<boolean>(true);
 
@@ -96,7 +96,7 @@ const Hero = () => {
         <li className="relative col-span-1 order-1 md:order-2 flex gap-4 aspect-6/5 md:aspect-square lg:aspect-3/2">
           <div
             className={`${
-              hero ? 'w-4/5' : 'w-1/5'
+              hero ? "w-4/5" : "w-1/5"
             } overflow-hidden rounded-xl duration-500 bg-zinc-200`}
           >
             <Image
@@ -110,7 +110,7 @@ const Hero = () => {
           </div>
           <div
             className={`${
-              hero ? 'w-1/5' : 'w-4/5'
+              hero ? "w-1/5" : "w-4/5"
             } overflow-hidden rounded-xl duration-500 bg-zinc-200`}
           >
             <Image
@@ -124,7 +124,7 @@ const Hero = () => {
           </div>
           <div
             className={`absolute flex justify-center bottom-4 bg-yellow text-green p-1 sm:p-2 rounded-full transition-all cursor-pointer ${
-              hero ? 'move-right-animation' : 'move-left-animation'
+              hero ? "move-right-animation" : "move-left-animation"
             }`}
             onClick={() => setHero(!hero)}
           >

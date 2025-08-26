@@ -1,11 +1,51 @@
-'use client';
+"use client";
 
-import ProductItem from './productItem';
-import { CalendarClock, Heart, Star } from 'lucide-react';
-import { useState } from 'react';
+import axiosClient from "@/app/lib/axiosClient";
+import ProductItem from "./productItem";
+import { CalendarClock, Heart, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { OptionType } from "../control-panel/products/createNewProduct";
+
+export interface Product {
+  id: string;
+  title: string;
+  description: string;
+  userId: string;
+  userName: string;
+  averageRating: number;
+  totalRating: number;
+  categories: { id: number; title: string }[];
+  options: {
+    id: number;
+    title: string;
+    dimension: string;
+    price: number;
+    type: OptionType;
+  }[];
+  imageCollection: {
+    main: string;
+    firstImage: string;
+    secondImage: string;
+    thirdImage: string;
+  };
+}
 
 const Products = () => {
-  const [filter, setFilter] = useState('latest');
+  const [filter, setFilter] = useState("latest");
+  const [productsList, setProductsList] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axiosClient.get("/guest/products");
+        console.log(res.data);
+        setProductsList([...res.data]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <section className="py-12">
@@ -19,51 +59,42 @@ const Products = () => {
         <ul className="flex items-center justify-start sm:justify-center gap-2 mb-8 overflow-x-scroll scrollbar-hide">
           <li
             className={`flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer border ${
-              filter == 'latest'
-                ? ' border-green bg-green text-white'
-                : 'border-zinc-200'
+              filter == "latest"
+                ? " border-green bg-green text-white"
+                : "border-zinc-200"
             }`}
-            onClick={() => setFilter('latest')}
+            onClick={() => setFilter("latest")}
           >
             <CalendarClock size={16} />
             <span>Latests</span>
           </li>
           <li
             className={`flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer border ${
-              filter == 'best'
-                ? ' border-green bg-green text-white'
-                : 'border-zinc-200'
+              filter == "best"
+                ? " border-green bg-green text-white"
+                : "border-zinc-200"
             }`}
-            onClick={() => setFilter('best')}
+            onClick={() => setFilter("best")}
           >
             <Star size={16} />
             <span>Best&nbsp;Sellers</span>
           </li>
           <li
             className={`flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer border ${
-              filter == 'featured'
-                ? ' border-green bg-green text-white'
-                : 'border-zinc-200'
+              filter == "featured"
+                ? " border-green bg-green text-white"
+                : "border-zinc-200"
             }`}
-            onClick={() => setFilter('featured')}
+            onClick={() => setFilter("featured")}
           >
             <Heart size={16} />
             <span>Featured&nbsp;Products</span>
           </li>
         </ul>
         <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
-          <ProductItem bgImg={'jr-korpa-baiXRjt912U-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-ctjoCkk7Dig-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-F2O333CR7YE-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-iigYfkARKzQ-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-m3KY4ixMWbM-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-P6y5rADKkgk-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-qLkLRF7xdt4-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-u3yyYID6eP4-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-uoPg1i1cDvY-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-wAXD_Its-48-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-wZcnZPheJbw-unsplash.jpg'} />
-          <ProductItem bgImg={'jr-korpa-H_BJWThZRok-unsplash.jpg'} />
+          
+          
+          {productsList && productsList.map((product:Product)=><ProductItem key={product.id} product={product} />)}
         </ul>
       </div>
     </section>
