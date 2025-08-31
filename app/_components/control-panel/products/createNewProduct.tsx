@@ -1,9 +1,12 @@
+"use client";
+
 import { CirclePlus, Plus } from "lucide-react";
 import ProductsOptions from "./productsOptions";
 import ProductsCategories from "./productsCategories";
 import ProductsImageCollection from "./productsImageCollection";
 import { useRef, useState } from "react";
-import axiosClient from "@/app/lib/axiosClient";
+import axiosClient from "@/app/_lib/axiosClient";
+import axios from "axios";
 
 export enum OptionType {
   PACK = "PACK",
@@ -118,12 +121,12 @@ const CreateNewProduct = ({
     }
 
     // Validate and append image files
-    let imageErrors = false;
+    // let imageErrors = false;
     const updatedImageCollection = imageCollection.map((img) => {
       if (!img.image) {
         // Mark this specific image as missing
         hasError = true;
-        imageErrors = true;
+        // imageErrors = true;
         return { ...img, exist: false };
       } else {
         // Add image file to form data with the exact name backend expects
@@ -173,18 +176,21 @@ const CreateNewProduct = ({
           secondImage: true,
           thirdImage: true,
         });
-      } catch (error: any) {
-        console.error("Error creating product:", error);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error("Error creating product:", error.message);
+        }
 
-        // Handle specific error cases
-        if (error.response?.status === 403) {
-          console.error("Access denied: Only sellers can create products");
-        } else if (error.response?.status === 400) {
-          console.error("Invalid data: Please check all required fields");
-        } else if (error.response?.status === 401) {
-          console.error("Authentication required: Please log in");
-        } else {
-          console.error("Server error: Please try again later");
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 403) {
+            console.error("Access denied: Only sellers can create products");
+          } else if (error.response?.status === 400) {
+            console.error("Invalid data: Please check all required fields");
+          } else if (error.response?.status === 401) {
+            console.error("Authentication required: Please log in");
+          } else {
+            console.error("Server error: Please try again later");
+          }
         }
       }
     } else {

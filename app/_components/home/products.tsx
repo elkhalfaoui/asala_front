@@ -1,6 +1,6 @@
 "use client";
 
-import axiosClient from "@/app/lib/axiosClient";
+import axiosClient from "@/app/_lib/axiosClient";
 import ProductItem from "./productItem";
 import { CalendarClock, Heart, Star } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ export interface Product {
   userId: string;
   userName: string;
   averageRating: number;
-  totalRating: number;
+  totalRatings: number;
   categories: { id: number; title: string }[];
   options: {
     id: number;
@@ -23,16 +23,24 @@ export interface Product {
     type: OptionType;
   }[];
   imageCollection: {
-    main: string;
+    mainImage: string;
     firstImage: string;
     secondImage: string;
     thirdImage: string;
   };
 }
 
+export interface SimpleProduct {
+  id: string;
+  title: string;
+  averageRating: number;
+  startingPrice: number;
+  mainImage: string;
+}
+
 const Products = () => {
   const [filter, setFilter] = useState("latest");
-  const [productsList, setProductsList] = useState<Product[]>([]);
+  const [productsList, setProductsList] = useState<SimpleProduct[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -92,9 +100,10 @@ const Products = () => {
           </li>
         </ul>
         <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
-          
-          
-          {productsList && productsList.map((product:Product)=><ProductItem key={product.id} product={product} />)}
+          {productsList &&
+            productsList.map((product: SimpleProduct) => (
+              <ProductItem key={product.id} product={product} />
+            ))}
         </ul>
       </div>
     </section>

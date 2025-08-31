@@ -21,7 +21,7 @@ const Footer = () => {
               alt="logo"
               width={260}
               height={56}
-              priority
+              className="w-[160px] object-cover"
             />
           </Link>
           <p className="text-zinc-600">

@@ -6,7 +6,8 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config) => {
-    if (typeof window !== "undefined") {
+    // Only add Authorization header for NON-guest endpoints
+    if (typeof window !== "undefined" && !config.url?.includes("/guest/")) {
       const token = localStorage.getItem("access_token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;

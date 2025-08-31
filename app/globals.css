@@ -5,11 +5,9 @@
   --color-yellow: #e99719;
 }
 
-
 body {
   font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
 }
-
 
 /* Hide scrollbar for all browsers */
 .scrollbar-hide {

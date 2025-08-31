@@ -30,14 +30,14 @@ const Hero = () => {
           </p>
           <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-6">
             <Link
-              href="#"
+              href="/products?page=1"
               className="w-full md:w-fit flex items-center justify-center gap-2 py-2 px-4 rounded-full bg-green text-white"
             >
               <ShoppingBasket size={24} strokeWidth={1.5} />
               <span>Shop Now</span>
             </Link>
             <Link
-              href="#"
+              href="/products?page=1"
               className="flex gap-1 font-medium border-b-2 text-green"
             >
               All Products

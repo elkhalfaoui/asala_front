@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ChevronDown, Globe, ShoppingCart, UserRound } from "lucide-react";
+import { ShoppingCart, UserRound } from "lucide-react";
 import BurgerMenu from "./home/burgerMenu";
 import Image from "next/image";
+import { RootState } from "../_store/store";
+import { connect } from "react-redux";
 
-const Header = () => {
+const Header = ({ order_count }: { order_count: number }) => {
   const [menu, setMenu] = useState<boolean>(false);
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
@@ -51,10 +53,10 @@ const Header = () => {
             />
           </Link>
           <div className="flex md:hidden items-center justify-center gap-2">
-            <Link href="#">
+            <Link href="/cart">
               <ShoppingCart strokeWidth={1.5} />
             </Link>
-            <Link href="#">
+            <Link href="/login">
               <UserRound strokeWidth={1.5} />
             </Link>
           </div>
@@ -88,24 +90,34 @@ const Header = () => {
           </ul>
           <ul className="flex flex-col md:flex-row items-center gap-6 md:gap-4">
             <li>
-              <Link href="/cart">
+              <Link href="/cart" className="flex items-center gap-0.5">
                 <ShoppingCart strokeWidth={1.5} />
+                {order_count > 0 && (
+                  <span className="w-7.5 p-[1px] text-center text-sm font-medium rounded-full bg-green text-white">
+                    {order_count}
+                  </span>
+                )}
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/login">
                 <UserRound strokeWidth={1.5} />
               </Link>
             </li>
-            <li className="flex items-center gap-1 md:pl-3 md:border-l border-zinc-300">
+            {/* <li className="flex items-center gap-1 md:pl-3 md:border-l border-zinc-300">
               <Globe strokeWidth={1.5} />
               <span>En</span>
               <ChevronDown strokeWidth={1.5} />
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
     </header>
   );
 };
-export default Header;
+
+const mapStateToProps = (state: RootState) => ({
+  order_count: state.ordersInfo.length,
+});
+
+export default connect(mapStateToProps)(Header);
