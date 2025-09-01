@@ -10,7 +10,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "ASALA DESIGN",
+  title: "Asala Design",
   description:
     "Découvrez ASALA DESIGN, votre boutique en ligne spécialisée dans les tableaux décoratifs imprimés. Des créations uniques et modernes pour sublimer vos murs et apporter une touche d’élégance à votre intérieur.",
   icons: {
