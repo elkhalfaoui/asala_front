@@ -67,14 +67,9 @@ const Header = ({ order_count }: { order_count: number }) => {
           }`}
         >
           <ul className="flex flex-col md:flex-row items-center gap-6 md:gap-2">
-            <li>
+            <li onClick={() => setMenu(false)}>
               <Link href="/" className="p-2">
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="p-2">
-                Custom
               </Link>
             </li>
             <li onClick={() => setMenu(false)}>
@@ -82,14 +77,14 @@ const Header = ({ order_count }: { order_count: number }) => {
                 Shop
               </Link>
             </li>
-            <li>
+            <li onClick={() => setMenu(false)}>
               <Link href="#" className="p-2">
                 About
               </Link>
             </li>
           </ul>
           <ul className="flex flex-col md:flex-row items-center gap-6 md:gap-4">
-            <li>
+            <li onClick={() => setMenu(false)}>
               <Link href="/cart" className="flex items-center gap-0.5">
                 <ShoppingCart strokeWidth={1.5} />
                 {order_count > 0 && (
@@ -99,11 +94,11 @@ const Header = ({ order_count }: { order_count: number }) => {
                 )}
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/login">
                 <UserRound strokeWidth={1.5} />
               </Link>
-            </li>
+            </li> */}
             {/* <li className="flex items-center gap-1 md:pl-3 md:border-l border-zinc-300">
               <Globe strokeWidth={1.5} />
               <span>En</span>

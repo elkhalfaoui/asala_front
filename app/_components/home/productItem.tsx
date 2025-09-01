@@ -11,7 +11,7 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
         className="flex flex-col justify-between items-center h-full"
       >
         {/* Image container */}
-        <div className="w-full aspect-3/4 overflow-hidden rounded-sm relative group">
+        <div className="w-full aspect-square overflow-hidden rounded-sm relative group">
           <Image
             src={`${product.mainImage}`}
             alt="image"
