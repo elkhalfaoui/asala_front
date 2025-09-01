@@ -18,8 +18,8 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
 
-        <div className="flex flex-col justify-end p-3">
-          <h3 className="text-lg font-semibold">{product.title}</h3>
+        <div className="flex flex-col">
+          <h3 className="text-lg">{product.title}</h3>
           <div className="flex gap-0.5 text-yellow-400 mt-1">
             {Array.from(
               { length: Math.floor(product.averageRating) },
@@ -30,7 +30,7 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
             {product.averageRating % 1 >= 0.4 && <StarHalf size={16} />}
           </div>
           <h4 className="mt-1">
-            <span className="text-sm text-zinc-300">starting from</span>{" "}
+            <span className="text-sm text-zinc-600">starting from</span>{" "}
             {product.startingPrice}
             DH
           </h4>
