@@ -18,7 +18,13 @@ const Categories = () => {
               className="w-full h-full object-cover"
             />
           </li>
-          <li className="col-span-1 row-span-3 aspect-4/3 rounded-sm bg-zinc-200"></li>
+          <li className="col-span-1 row-span-3 aspect-4/3 rounded-sm bg-zinc-200"><Image
+              src="/abstract.jpeg"
+              alt="categorie"
+              width={600}
+              height={600}
+              className="w-full h-full object-cover"
+            /></li>
           <li className="col-span-1 row-span-2 aspect-4/2 rounded-sm bg-zinc-200"></li>
         </ul>
       </div>

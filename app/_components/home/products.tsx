@@ -36,6 +36,7 @@ export interface SimpleProduct {
   averageRating: number;
   startingPrice: number;
   mainImage: string;
+  categories: string[];
 }
 
 const Products = () => {

@@ -30,7 +30,7 @@ const Footer = () => {
           </p>
           <div className="flex gap-4 justify-center lg:justify-start">
             <a
-              href="https://www.facebook.com/share/1AkbCLSwLt/"
+              href="https://www.facebook.com/share/14GREksvFng/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl text-blue-600"
@@ -38,7 +38,7 @@ const Footer = () => {
               <Facebook />
             </a>
             <a
-              href="https://www.instagram.com/chic_tableau/"
+              href="https://www.instagram.com/asaladesign_/#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-3xl text-rose-500"
@@ -70,7 +70,7 @@ const Footer = () => {
           </p>
           <p className="flex flex-col items-center md:flex-row gap-2 text-zinc-600">
             <Phone />
-            <span>+212 766 903 663</span>
+            <span>+212 684-883848</span>
           </p>
           <p className="flex flex-col items-center md:flex-row gap-2 text-zinc-600">
             <Mail />

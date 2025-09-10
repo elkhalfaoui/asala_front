@@ -2,7 +2,7 @@
 
 import { ArrowDownNarrowWide, ChevronDown } from "lucide-react";
 
-const Filter = () => {
+const Filter = ({ categories }: { categories: string[] }) => {
   return (
     <section className="container mx-auto px-4">
       <ul className="flex items-center justify-between py-4 text-sm">
@@ -10,33 +10,16 @@ const Filter = () => {
           <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full font-light bg-green text-white">
             All&nbsp;Categories
           </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Islamic
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Traditional
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Moroccan
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Culture
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Nature
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Mosaic
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Abstract
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Calligraphy
-          </div>
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100">
-            Architecture
-          </div>
+
+          {categories &&
+            categories.map((category, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full bg-zinc-100"
+              >
+                {category}
+              </div>
+            ))}
         </li>
         <li className="relative flex items-center gap-4 pl-4 ml-8 after:content-[''] after:absolute after:w-[3px] after:h-5/6 after:top-1/12 after:left-0 after:bg-yellow">
           <p className="flex items-center gap-2">
