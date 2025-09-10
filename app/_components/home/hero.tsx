@@ -115,7 +115,7 @@ const Hero = () => {
             } overflow-hidden rounded-xl duration-500 bg-zinc-200`}
           >
             <Image
-              src="/heroTwo.jpg"
+              src="/heroTwo.jpeg"
               alt="hero"
               height={800}
               width={800}
