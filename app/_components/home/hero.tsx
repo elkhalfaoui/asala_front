@@ -17,12 +17,12 @@ const Hero = () => {
     <section className="py-8 md:py-12 bg-zinc-100">
       <ul className="container mx-auto  px-4 grid grid-cols-1 md:grid-cols-2 items-center md:gap-x-8 lg:gap-x-24 gap-y-6">
         <li className="col-span-1 order-2 md:order-1 flex flex-col justify-center gap-8">
-          <h4 className="flex items-center gap-2 w-fit mx-auto md:mx-0 rounded-full px-2 py-0.5 text-sm bg-white text-green">
+          <h4 className="flex items-center gap-2 w-fit mx-auto md:mx-0 rounded-full px-2 py-0.5 text-sm bg-white">
             <Medal size={24} strokeWidth={1.5} />
             <span>La meilleure boutique Tableau en ligne</span>
           </h4>
-          <h1 className="text-3xl md:text-4xl text-center md:text-start font-medium leading-12 text-green">
-            DESIGN YOUR SPACE WITH INSPIRATION
+          <h1 className="text-3xl md:text-4xl text-center md:text-start font-medium leading-12 text-brown">
+            CONCEVEZ VOTRE ESPACE AVEC INSPIRATION
           </h1>
           <p className="text-center text-sm md:text-start md:text-base">
             Transformez vos murs en reflets de votre personnalité. Nos tableaux
@@ -32,14 +32,14 @@ const Hero = () => {
           <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-6">
             <Link
               href="/products?page=1"
-              className="w-full md:w-fit flex items-center justify-center gap-2 py-2 px-4 rounded-full bg-green text-white"
+              className="w-full md:w-fit flex items-center justify-center gap-2 py-2 px-4 rounded-full bg-black text-white"
             >
               <ShoppingBasket size={24} strokeWidth={1.5} />
               <span>Achetez maintenant</span>
             </Link>
             <Link
               href="/products?page=1"
-              className="flex gap-1 font-medium border-b-2 text-green"
+              className="flex gap-1 font-medium border-b"
             >
               Tous les produits
             </Link>
@@ -81,7 +81,7 @@ const Hero = () => {
                 className="object-cover w-full h-full"
               />
             </li>
-            <li className="w-10 h-10 flex items-center justify-center rounded-full -translate-x-6 md:-translate-x-12 border-2 cursor-pointer border-zinc-100 bg-yellow text-dark-green overflow-hidden z-5">
+            <li className="w-10 h-10 flex items-center justify-center rounded-full -translate-x-6 md:-translate-x-12 border-2 cursor-pointer border-zinc-100 bg-black text-white overflow-hidden z-5">
               <Plus size={20} strokeWidth={3} />
             </li>
             <li className="w-full md:w-fit flex flex-col justify-center md:-translate-x-10">

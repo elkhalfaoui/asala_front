@@ -62,7 +62,7 @@ const Header = ({ order_count }: { order_count: number }) => {
           </div>
         </menu>
         <nav
-          className={`md:col-2 flex justify-between items-center flex-col md:flex-row h-[calc(100dvh-64px)] py-16 md:py-0 absolute left-0 w-full md:h-fit md:translate-0 md:top-0 md:relative duration-500 -z-10 md:z-0 bg-white ${
+          className={`md:col-span-2 flex justify-between items-center flex-col md:flex-row h-[calc(100dvh-64px)] py-16 md:py-0 absolute left-0 w-full md:h-fit md:translate-0 md:top-0 md:relative duration-500 -z-10 md:z-0 bg-white ${
             menu ? "top-16" : "-top-[100dvh]"
           }`}
         >

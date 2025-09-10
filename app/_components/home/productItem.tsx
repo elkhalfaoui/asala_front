@@ -30,7 +30,7 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
             {product.averageRating % 1 >= 0.4 && <StarHalf size={16} />}
           </div>
           <h4 className="mt-1">
-            <span className="text-sm text-zinc-600">starting from</span>{" "}
+            <span className="text-sm text-zinc-600">à partir de</span>{" "}
             {product.startingPrice}
             DH
           </h4>
