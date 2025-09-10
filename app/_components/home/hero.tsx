@@ -81,7 +81,7 @@ const Hero = () => {
                 className="object-cover w-full h-full"
               />
             </li>
-            <li className="w-10 h-10 flex items-center justify-center rounded-full -translate-x-6 md:-translate-x-12 border-2 cursor-pointer border-zinc-100 bg-black text-white overflow-hidden z-5">
+            <li className="w-10 h-10 flex items-center justify-center rounded-full -translate-x-6 md:-translate-x-12 border-2 cursor-pointer border-zinc-100 bg-yellow text-white overflow-hidden z-5">
               <Plus size={20} strokeWidth={3} />
             </li>
             <li className="w-full md:w-fit flex flex-col justify-center md:-translate-x-10">
@@ -124,7 +124,7 @@ const Hero = () => {
             />
           </div>
           <div
-            className={`absolute flex justify-center bottom-4 bg-yellow text-green p-1 sm:p-2 rounded-full transition-all cursor-pointer ${
+            className={`absolute flex justify-center bottom-4 bg-yellow text-white p-1 sm:p-2 rounded-full transition-all cursor-pointer ${
               hero ? "move-right-animation" : "move-left-animation"
             }`}
             onClick={() => setHero(!hero)}
