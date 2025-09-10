@@ -56,9 +56,9 @@ const Header = ({ order_count }: { order_count: number }) => {
             <Link href="/cart">
               <ShoppingCart strokeWidth={1.5} />
             </Link>
-            <Link href="/login">
+            {/* <Link href="/login">
               <UserRound strokeWidth={1.5} />
-            </Link>
+            </Link> */}
           </div>
         </menu>
         <nav
