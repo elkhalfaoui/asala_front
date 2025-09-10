@@ -9,9 +9,9 @@ const Features = () => {
             <Truck size={48} strokeWidth={2} className="text-green" />
           </div>
           <div className="flex flex-col gap-1 text-center">
-            <h4 className="text-lg text-green">Free Shipping</h4>
+            <h4 className="text-lg text-green">Livraison gratuite</h4>
             <p className="text-sm text-zinc-600">
-              free shipping all across morocco
+              livraison gratuite dans tout le Maroc
             </p>
           </div>
         </li>
@@ -20,9 +20,10 @@ const Features = () => {
             <CreditCard size={48} strokeWidth={2} className="text-green" />
           </div>
           <div className="flex flex-col gap-1 text-center">
-            <h4 className="text-lg text-green">Flexible Payment</h4>
+            <h4 className="text-lg text-green">Paiement en livraison</h4>
             <p className="text-sm text-zinc-600">
-              pay with credit card or on delivery
+              Profitez d’un achat sécurisé et pratique avec notre option de
+              paiement à la livraison, sans stress
             </p>
           </div>
         </li>
@@ -31,9 +32,10 @@ const Features = () => {
             <Headset size={48} strokeWidth={2} className="text-green" />
           </div>
           <div className="flex flex-col gap-1 text-center">
-            <h4 className="text-lg text-green">24/7 Support</h4>
+            <h4 className="text-lg text-green">24/7 Assistance</h4>
             <p className="text-sm text-zinc-600">
-              Lorem ipsum dolor sit amet consectetur.
+              Bénéficiez d’une assistance rapide et disponible 24/7 pour
+              répondre à toutes vos questions
             </p>
           </div>
         </li>

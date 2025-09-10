@@ -19,14 +19,15 @@ const Hero = () => {
         <li className="col-span-1 order-2 md:order-1 flex flex-col justify-center gap-8">
           <h4 className="flex items-center gap-2 w-fit mx-auto md:mx-0 rounded-full px-2 py-0.5 text-sm bg-white text-green">
             <Medal size={24} strokeWidth={1.5} />
-            <span>The Best Online Tableau Store.</span>
+            <span>La meilleure boutique Tableau en ligne</span>
           </h4>
           <h1 className="text-3xl md:text-4xl text-center md:text-start font-medium leading-12 text-green">
-            Custom & design Wall Art, Made Just for You.
+            DESIGN YOUR SPACE WITH INSPIRATION
           </h1>
           <p className="text-center text-sm md:text-start md:text-base">
-            We provide you the ability to make your custom design or to owen one
-            of our pice of art
+            Transformez vos murs en reflets de votre personnalité. Nos tableaux
+            décoratifs soigneusement conçus apportent élégance, originalité et
+            inspiration à chaque recoin de votre maison ou de votre bureau.
           </p>
           <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-6">
             <Link
@@ -34,13 +35,13 @@ const Hero = () => {
               className="w-full md:w-fit flex items-center justify-center gap-2 py-2 px-4 rounded-full bg-green text-white"
             >
               <ShoppingBasket size={24} strokeWidth={1.5} />
-              <span>Shop Now</span>
+              <span>Achetez maintenant</span>
             </Link>
             <Link
               href="/products?page=1"
               className="flex gap-1 font-medium border-b-2 text-green"
             >
-              All Products
+              Tous les produits
             </Link>
           </div>
           <ul className="flex flex-wrap md:flex-nowrap justify-center md:justify-start items-center">
@@ -85,10 +86,10 @@ const Hero = () => {
             </li>
             <li className="w-full md:w-fit flex flex-col justify-center md:-translate-x-10">
               <h4 className="text-center md:text-start font-medium">
-                4.9 Ratings+
+                4,9 évaluations+
               </h4>
               <p className="text-center md:text-start text-sm text-zinc-600">
-                Trusted&nbsp;by&nbsp;Customers
+                Approuvé&nbsp;par&nbsp;les&nbsp;clients
               </p>
             </li>
           </ul>
@@ -100,7 +101,7 @@ const Hero = () => {
             } overflow-hidden rounded-xl duration-500 bg-zinc-200`}
           >
             <Image
-              src="/jr-korpa-qLkLRF7xdt4-unsplash.jpg"
+              src="/heroOne.jpg"
               alt="hero"
               height={800}
               width={800}
@@ -114,7 +115,7 @@ const Hero = () => {
             } overflow-hidden rounded-xl duration-500 bg-zinc-200`}
           >
             <Image
-              src="/jr-korpa-P6y5rADKkgk-unsplash.jpg"
+              src="/heroTwo.jpg"
               alt="hero"
               height={800}
               width={800}
