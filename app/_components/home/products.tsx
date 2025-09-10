@@ -30,13 +30,18 @@ export interface Product {
   };
 }
 
+export interface Category {
+  id: number;
+  title: string;
+}
+
 export interface SimpleProduct {
   id: string;
   title: string;
   averageRating: number;
   startingPrice: number;
   mainImage: string;
-  categories: string[];
+  categories: Category[];
 }
 
 const Products = () => {

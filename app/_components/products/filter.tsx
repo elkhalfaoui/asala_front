@@ -7,7 +7,7 @@ const Filter = ({ categories }: { categories: string[] }) => {
     <section className="container mx-auto px-4">
       <ul className="flex items-center justify-between py-4 text-sm">
         <li className="flex items-center gap-2 overflow-scroll scrollbar-hide">
-          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full font-light bg-green text-white">
+          <div className="flex items-center gap-4 px-4 py-1 cursor-pointer rounded-full font-light bg-black text-white">
             All&nbsp;Categories
           </div>
 
