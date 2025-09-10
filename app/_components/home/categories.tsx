@@ -8,16 +8,16 @@ const Categories = () => {
           Categories
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <li className="col-span-1 row-span-2 aspect-4/2 rounded-sm bg-zinc-200">
+          <li className="col-span-1 row-span-2 aspect-4/2 rounded-sm bg-zinc-200"></li>
+          <li className="col-span-1 row-span-3 aspect-4/3 rounded-sm bg-zinc-200">
             <Image
               src="/traditional.jpeg"
               alt="categorie"
-              width={200}
-              height={200}
+              width={600}
+              height={600}
               className="w-full h-full object-cover"
             />
           </li>
-          <li className="col-span-1 row-span-3 aspect-4/3 rounded-sm bg-zinc-200"></li>
           <li className="col-span-1 row-span-3 aspect-4/3 rounded-sm bg-zinc-200"></li>
           <li className="col-span-1 row-span-2 aspect-4/2 rounded-sm bg-zinc-200"></li>
         </ul>
