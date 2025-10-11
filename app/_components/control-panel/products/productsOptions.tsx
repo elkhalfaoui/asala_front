@@ -23,14 +23,16 @@ const ProductsOptions = ({
   const [optionType, setOptionType] = useState<boolean>(true);
   const titleRef = useRef<HTMLInputElement | null>(null);
   const dimensionRef = useRef<HTMLInputElement | null>(null);
-  const priceRef = useRef<HTMLInputElement | null>(null);
+  const withoutCadrePriceRef = useRef<HTMLInputElement | null>(null);
+  const withCadrePriceRef = useRef<HTMLInputElement | null>(null);
 
   const List: Option[] = [
     {
       id: 1,
       title: "pack 2-XS",
       dimension: "40 x 30",
-      price: 249,
+      withoutCadrePrice: 249,
+      withCadrePrice: 259,
       type: OptionType.PACK,
       selected: false,
     },
@@ -38,7 +40,8 @@ const ProductsOptions = ({
       id: 2,
       title: "pack XS",
       dimension: "50 x 35",
-      price: 299,
+      withoutCadrePrice: 299,
+      withCadrePrice: 309,
       type: OptionType.PACK,
       selected: false,
     },
@@ -46,7 +49,8 @@ const ProductsOptions = ({
       id: 3,
       title: "pack SM",
       dimension: "60 x 43",
-      price: 349,
+      withoutCadrePrice: 349,
+      withCadrePrice: 359,
       type: OptionType.PACK,
       selected: false,
     },
@@ -54,7 +58,8 @@ const ProductsOptions = ({
       id: 4,
       title: "pack MD",
       dimension: "70 x 50",
-      price: 399,
+      withoutCadrePrice: 399,
+      withCadrePrice: 409,
       type: OptionType.PACK,
       selected: false,
     },
@@ -62,7 +67,8 @@ const ProductsOptions = ({
       id: 5,
       title: "pack LG",
       dimension: "80 x 55",
-      price: 449,
+      withoutCadrePrice: 449,
+      withCadrePrice: 459,
       type: OptionType.PACK,
       selected: false,
     },
@@ -70,7 +76,8 @@ const ProductsOptions = ({
       id: 6,
       title: "pack XL",
       dimension: "100 x 60",
-      price: 499,
+      withoutCadrePrice: 499,
+      withCadrePrice: 509,
       type: OptionType.PACK,
       selected: false,
     },
@@ -78,7 +85,8 @@ const ProductsOptions = ({
       id: 7,
       title: "pack 2-XL",
       dimension: "120 x 70",
-      price: 549,
+      withoutCadrePrice: 549,
+      withCadrePrice: 559,
       type: OptionType.PACK,
       selected: false,
     },
@@ -86,7 +94,8 @@ const ProductsOptions = ({
       id: 8,
       title: "solo SM",
       dimension: "80 x 55",
-      price: 249,
+      withoutCadrePrice: 249,
+      withCadrePrice: 259,
       type: OptionType.SOLO,
       selected: false,
     },
@@ -94,7 +103,8 @@ const ProductsOptions = ({
       id: 9,
       title: "solo MD",
       dimension: "100 x 60",
-      price: 299,
+      withoutCadrePrice: 299,
+      withCadrePrice: 309,
       type: OptionType.SOLO,
       selected: false,
     },
@@ -102,15 +112,8 @@ const ProductsOptions = ({
       id: 10,
       title: "solo LG",
       dimension: "120 x 70",
-      price: 349,
-      type: OptionType.SOLO,
-      selected: false,
-    },
-    {
-      id: 11,
-      title: "Sara",
-      dimension: "Himara",
-      price: 2.04,
+      withoutCadrePrice: 349,
+      withCadrePrice: 359,
       type: OptionType.SOLO,
       selected: false,
     },
@@ -209,7 +212,11 @@ const ProductsOptions = ({
                   <Ruler size={14} />
                 </p>
                 <p className="flex items-center gap-1 text-sm text-zinc-600">
-                  <span>{option?.price}</span>
+                  <span>{option?.withoutCadrePrice}</span>
+                  <CircleDollarSign size={14} />
+                </p>
+                <p className="flex items-center gap-1 text-sm text-zinc-600">
+                  <span>{option?.withCadrePrice}</span>
                   <CircleDollarSign size={14} />
                 </p>
               </li>
@@ -232,7 +239,10 @@ const ProductsOptions = ({
                     id: optionsList.length + 1,
                     title: titleRef.current?.value ?? "",
                     dimension: dimensionRef.current?.value ?? "",
-                    price: Number(priceRef.current?.value) ?? 0,
+                    withoutCadrePrice:
+                      Number(withoutCadrePriceRef.current?.value) ?? 0,
+                    withCadrePrice:
+                      Number(withoutCadrePriceRef.current?.value) ?? 0,
                     type: optionType ? OptionType.PACK : OptionType.SOLO,
                     selected: true,
                   },
@@ -248,8 +258,14 @@ const ProductsOptions = ({
           />
           <input
             type="number"
-            placeholder="price"
-            ref={priceRef}
+            placeholder="prix sans cadre"
+            ref={withoutCadrePriceRef}
+            className="w-3/4 px-1 outline-none border border-zinc-200"
+          />
+          <input
+            type="number"
+            placeholder="prix avec cadre"
+            ref={withCadrePriceRef}
             className="w-3/4 px-1 outline-none border border-zinc-200"
           />
         </li>

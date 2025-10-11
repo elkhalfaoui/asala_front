@@ -17,7 +17,8 @@ export interface Option {
   id: number;
   title: string;
   dimension: string;
-  price: number;
+  withoutCadrePrice: number;
+  withCadrePrice: number;
   type: OptionType;
   selected: boolean;
 }
@@ -95,7 +96,8 @@ const CreateNewProduct = ({
       selectedOptions.forEach((option, index) => {
         formData.append(`options[${index}].title`, option.title);
         formData.append(`options[${index}].dimension`, option.dimension);
-        formData.append(`options[${index}].price`, option.price.toString());
+        formData.append(`options[${index}].withoutCadrePrice`, option.withoutCadrePrice.toString());
+        formData.append(`options[${index}].withCadrePrice`, option.withCadrePrice.toString());
         formData.append(`options[${index}].type`, option.type);
       });
 

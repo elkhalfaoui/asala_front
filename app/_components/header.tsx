@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ShoppingCart, UserRound } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import BurgerMenu from "./home/burgerMenu";
 import Image from "next/image";
 import { RootState } from "../_store/store";
