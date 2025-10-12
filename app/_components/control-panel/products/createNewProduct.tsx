@@ -237,6 +237,15 @@ const CreateNewProduct = ({
             <span className="text-sm text-red-600">*title is required</span>
           )}
         </div>
+        <div className="flex flex-col">
+          <label htmlFor="discount" className="font-light">
+            *Discount
+          </label>
+          <input type="radio" name="discount" id="" />
+          {!exist.description && (
+            <span className="text-sm text-red-600">*discount is required</span>
+          )}
+        </div>
         <ProductsOptions
           optionsList={optionsList}
           setOptionsList={setOptionsList}
