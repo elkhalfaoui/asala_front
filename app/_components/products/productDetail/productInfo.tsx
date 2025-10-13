@@ -39,6 +39,22 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
     }
   }, [product]);
 
+  // Calculate current price based on dimension and cadre
+  const getCurrentPrice = () => {
+    if (!selectedOption) return 0;
+    return cadre === "sans" 
+      ? selectedOption.withoutCadrePrice 
+      : selectedOption.withCadrePrice;
+  };
+
+  // Calculate original price for strikethrough
+  const getOriginalPrice = () => {
+    if (!selectedOption) return 0;
+    return cadre === "sans"
+      ? selectedOption.withoutCadrePrice + 50
+      : selectedOption.withCadrePrice + 50;
+  };
+
   return (
     <>
       <SmallCart smallCart={smallCart} setSmallCart={setSmallCart} />
@@ -90,33 +106,40 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
 
         <ul className="flex items-center gap-4 mb-4">
           <li
-            className={`w-10 h-10 p-1 border ${
+            className={`w-10 h-10 p-1 cursor-pointer border ${
               cadre == "sans" ? "border-zinc-800" : "border-transparent"
             }`}
+            onClick={() => setCadre("sans")}
           >
-            <Image
-              src="/cadre_noire.jpeg"
-              alt="sans_cadre"
-              width={40}
-              height={40}
-            />
-          </li>
-          <li className={`w-10 h-10 p-1 border ${
-              cadre == "noire" ? "border-zinc-800" : "border-transparent"
-            }`}>
-            <Image
-              src="/cadre_dore.jpeg"
-              alt="sans_cadre"
-              width={40}
-              height={40}
-            />
-          </li>
-          <li className={`w-10 h-10 p-1 border ${
-              cadre == "dore" ? "border-zinc-800" : "border-transparent"
-            }`}>
             <Image
               src="/sans_cadre.jpeg"
               alt="sans_cadre"
+              width={40}
+              height={40}
+            />
+          </li>
+          <li
+            className={`w-10 h-10 p-1 cursor-pointer border ${
+              cadre == "noire" ? "border-zinc-800" : "border-transparent"
+            }`}
+            onClick={() => setCadre("noire")}
+          >
+            <Image
+              src="/cadre_noire.jpeg"
+              alt="cadre_noire"
+              width={40}
+              height={40}
+            />
+          </li>
+          <li
+            className={`w-10 h-10 p-1 cursor-pointer border ${
+              cadre == "dore" ? "border-zinc-800" : "border-transparent"
+            }`}
+            onClick={() => setCadre("dore")}
+          >
+            <Image
+              src="/cadre_dore.jpeg"
+              alt="cadre_dore"
               width={40}
               height={40}
             />
@@ -148,10 +171,10 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
           {selectedOption && (
             <>
               <h3 className="w-fit text-2xl font-medium p-2 rounded-sm bg-green text-white">
-                {selectedOption.withCadrePrice * quantity}.00 DH
+                {getCurrentPrice() * quantity}.00 DH
               </h3>
               <p className="line-through text-zinc-600">
-                {selectedOption.withoutCadrePrice * quantity + 50}.00 DH
+                {getOriginalPrice() * quantity}.00 DH
               </p>
             </>
           )}
@@ -192,9 +215,9 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
                 image: product.imageCollection.firstImage,
                 rating: product.averageRating,
                 dimension: selectedOption.dimension,
-                price: selectedOption.withoutCadrePrice,
+                price: getCurrentPrice(),
                 quantity: quantity,
-                total: quantity * selectedOption.withoutCadrePrice,
+                total: quantity * getCurrentPrice(),
               });
             }
             setSmallCart(true);
