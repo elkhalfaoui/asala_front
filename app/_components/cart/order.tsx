@@ -41,7 +41,7 @@ const Order = ({
           productId: order.product_id,
           optionId: order.option_id,
           quantity: order.quantity,
-          cadreType: order.cadreType.toUpperCase(), // Convert to match enum: SANS, NOIRE, DORE
+          cadreType: order.cadreType.toLowerCase(),
         })),
       };
 
