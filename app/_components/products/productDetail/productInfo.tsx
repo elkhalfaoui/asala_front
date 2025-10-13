@@ -218,6 +218,7 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
                 price: getCurrentPrice(),
                 quantity: quantity,
                 total: quantity * getCurrentPrice(),
+                cadreType: cadre, // Add this line
               });
             }
             setSmallCart(true);

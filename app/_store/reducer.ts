@@ -8,6 +8,7 @@ export interface OrderInfo {
   price: number;
   quantity: number;
   total: number;
+  cadreType: string;
 }
 
 export interface CounterState {
