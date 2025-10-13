@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Product } from "../../home/products";
 import { add_order } from "@/app/_store/actions";
 import { connect, ConnectedProps } from "react-redux";
+import Image from "next/image";
 
 const mapDispatchToProps = {
   add_order,
@@ -26,12 +27,13 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
   const [selectedOption, setSelectedOption] = useState<
     Product["options"][number] | null
   >(null);
+  const [cadre, setCadre] = useState<string>("sans");
 
   // Pick smallest price option by default
   useEffect(() => {
     if (product?.options?.length) {
       const minOption = [...product.options].reduce((prev, curr) =>
-        prev.price < curr.price ? prev : curr
+        prev.withCadrePrice < curr.withCadrePrice ? prev : curr
       );
       setSelectedOption(minOption);
     }
@@ -86,6 +88,41 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
           </ul>
         </div>
 
+        <ul className="flex items-center gap-4 mb-4">
+          <li
+            className={`w-10 h-10 p-1 border ${
+              cadre == "sans" ? "border-zinc-800" : "border-transparent"
+            }`}
+          >
+            <Image
+              src="/cadre_noire.jpeg"
+              alt="sans_cadre"
+              width={40}
+              height={40}
+            />
+          </li>
+          <li className={`w-10 h-10 p-1 border ${
+              cadre == "noire" ? "border-zinc-800" : "border-transparent"
+            }`}>
+            <Image
+              src="/cadre_dore.jpeg"
+              alt="sans_cadre"
+              width={40}
+              height={40}
+            />
+          </li>
+          <li className={`w-10 h-10 p-1 border ${
+              cadre == "dore" ? "border-zinc-800" : "border-transparent"
+            }`}>
+            <Image
+              src="/sans_cadre.jpeg"
+              alt="sans_cadre"
+              width={40}
+              height={40}
+            />
+          </li>
+        </ul>
+
         {/* Pricing */}
         <div className="flex flex-wrap items-baseline gap-4 mb-4">
           <div className="col-span-1 flex items-center px-2">
@@ -111,10 +148,10 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
           {selectedOption && (
             <>
               <h3 className="w-fit text-2xl font-medium p-2 rounded-sm bg-green text-white">
-                {selectedOption.price * quantity}.00 DH
+                {selectedOption.withCadrePrice * quantity}.00 DH
               </h3>
               <p className="line-through text-zinc-600">
-                {selectedOption.price * quantity + 50}.00 DH
+                {selectedOption.withoutCadrePrice * quantity + 50}.00 DH
               </p>
             </>
           )}
@@ -155,9 +192,9 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
                 image: product.imageCollection.firstImage,
                 rating: product.averageRating,
                 dimension: selectedOption.dimension,
-                price: selectedOption.price,
+                price: selectedOption.withoutCadrePrice,
                 quantity: quantity,
-                total: quantity * selectedOption.price,
+                total: quantity * selectedOption.withoutCadrePrice,
               });
             }
             setSmallCart(true);

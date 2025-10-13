@@ -19,7 +19,8 @@ export interface Product {
     id: number;
     title: string;
     dimension: string;
-    price: number;
+    withoutCadrePrice: number;
+    withCadrePrice: number;
     type: OptionType;
   }[];
   imageCollection: {
