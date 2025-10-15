@@ -17,8 +17,11 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
           height={400}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
-        <div className="absolute top-0 right-4 w-4 h-8 bg-red-600 text-white">-16%</div>
-        <div className="absolute top-4 right-4 w-4 h-4 bg-transparent rotate-45"></div>
+        <div className="absolute top-0 right-4 w-4 h-8 bg-red-600 text-white">
+          <span>-16%</span>
+          <div className="absolute top-4 right-4 w-4 h-4 bg-transparent rotate-45"></div>
+        </div>
+
         <div className="flex flex-col">
           <h3 className="text-lg">{product.title}</h3>
           <div className="flex gap-0.5 text-yellow-400 mt-1">
