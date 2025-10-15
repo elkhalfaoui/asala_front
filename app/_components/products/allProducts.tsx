@@ -40,11 +40,14 @@ const AllProducts = ({ page }: { page: number }) => {
   useEffect(() => {
     let filtered = [...products];
 
-    if (filter.length > 0) {
-      filtered = products.filter((product) =>
-        product.categories.some((c) => filter.includes(c.title))
-      );
-    }
+if (filter.length > 0) {
+  filtered = products.filter((product) =>
+    // keep product only if it has *all* selected categories
+    filter.every((selected) =>
+      product.categories.some((c) => c.title === selected)
+    )
+  );
+}
 
     const start = (+page - 1) * 20;
     const end = +page * 20;
