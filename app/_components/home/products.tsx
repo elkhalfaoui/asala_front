@@ -43,6 +43,9 @@ export interface SimpleProduct {
   startingPrice: number;
   mainImage: string;
   categories: Category[];
+  discount: boolean;
+  createdDate: string;
+  sellingCount: number;
 }
 
 const Products = () => {

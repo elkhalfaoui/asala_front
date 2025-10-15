@@ -8,22 +8,30 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
     <li>
       <Link
         href={`/products/${product.id}`}
-        className="relative flex flex-col gap-2 w-full"
+        className="relative flex flex-col gap-2 w-full group"
       >
+        {/* Product Image */}
         <Image
           src={`${product.mainImage}`}
-          alt="image"
+          alt={product.title}
           width={400}
           height={400}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg"
         />
-        <div className="absolute top-0 right-4 w-4 h-8 bg-red-600 text-white">
-          <span>-16%</span>
-          <div className="absolute top-4 right-4 w-4 h-4 bg-transparent rotate-45"></div>
-        </div>
 
-        <div className="flex flex-col">
-          <h3 className="text-lg">{product.title}</h3>
+        {/* Bookmark Discount Badge */}
+        {product.discount && (
+          <div className="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-bl-md shadow-md">
+            -16%
+            <div className="absolute bottom-0 right-0 w-0 h-0 border-l-[10px] border-l-transparent border-t-[10px] border-t-red-800"></div>
+          </div>
+        )}
+
+        {/* Product Info */}
+        <div className="flex flex-col mt-2">
+          <h3 className="text-lg font-medium">{product.title}</h3>
+
+          {/* Stars */}
           <div className="flex gap-0.5 text-yellow-400 mt-1">
             {Array.from(
               { length: Math.floor(product.averageRating) },
@@ -33,14 +41,16 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
             )}
             {product.averageRating % 1 >= 0.4 && <StarHalf size={16} />}
           </div>
+
+          {/* Price */}
           <h4 className="mt-1">
             <span className="text-sm text-zinc-600">à partir de</span>{" "}
-            {product.startingPrice}
-            DH
+            <span className="font-semibold">{product.startingPrice} DH</span>
           </h4>
         </div>
       </Link>
     </li>
   );
 };
+
 export default ProductItem;
