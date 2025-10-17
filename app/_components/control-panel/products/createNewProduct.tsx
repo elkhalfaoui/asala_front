@@ -53,7 +53,7 @@ const CreateNewProduct = ({
   });
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  const [discount, setDiscount] = useState<boolean>(false); // ADD THIS STATE
+  const [discount, setDiscount] = useState<boolean>(false);
   const [optionsList, setOptionsList] = useState<Option[]>([]);
   const [categoriesList, setCategoriesList] = useState<Category[]>([]);
   const [imageCollection, setImageCollection] = useState<ImageItem[]>([
@@ -62,14 +62,17 @@ const CreateNewProduct = ({
     { name: "secondImage", image: null, exist: true },
     { name: "thirdImage", image: null, exist: true },
   ]);
+  const [loading, setLoading] = useState(false); // NEW STATE
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (loading) return; // prevent double submit
+    setLoading(true);
+
     const formData = new FormData();
     let hasError = false;
 
-    // Validate and append basic product information
     if (!titleRef.current?.value?.trim()) {
       setExist((prev) => ({ ...prev, title: false }));
       hasError = true;
@@ -84,10 +87,8 @@ const CreateNewProduct = ({
       formData.append("description", descriptionRef.current.value.trim());
     }
 
-    // ADD DISCOUNT FIELD - THIS WAS MISSING!
     formData.append("discount", discount.toString());
 
-    // Validate and append product options
     const selectedOptions = optionsList.filter((option) => option.selected);
     if (selectedOptions.length === 0) {
       setExist((prev) => ({ ...prev, options: false }));
@@ -96,14 +97,19 @@ const CreateNewProduct = ({
       selectedOptions.forEach((option, index) => {
         formData.append(`options[${index}].title`, option.title);
         formData.append(`options[${index}].dimension`, option.dimension);
-        formData.append(`options[${index}].withoutCadrePrice`, option.withoutCadrePrice.toString());
-        formData.append(`options[${index}].withCadrePrice`, option.withCadrePrice.toString());
+        formData.append(
+          `options[${index}].withoutCadrePrice`,
+          option.withoutCadrePrice.toString()
+        );
+        formData.append(
+          `options[${index}].withCadrePrice`,
+          option.withCadrePrice.toString()
+        );
         formData.append(`options[${index}].type`, option.type);
       });
       setExist((prev) => ({ ...prev, options: true }));
     }
 
-    // Validate and append product categories
     const selectedCategories = categoriesList.filter(
       (category) => category.selected
     );
@@ -117,7 +123,6 @@ const CreateNewProduct = ({
       setExist((prev) => ({ ...prev, categories: true }));
     }
 
-    // Validate and append image files
     const updatedImageCollection = imageCollection.map((img) => {
       if (!img.image) {
         hasError = true;
@@ -146,7 +151,7 @@ const CreateNewProduct = ({
         // Reset form
         if (titleRef.current) titleRef.current.value = "";
         if (descriptionRef.current) descriptionRef.current.value = "";
-        setDiscount(false); // RESET DISCOUNT
+        setDiscount(false);
         setOptionsList([]);
         setCategoriesList([]);
         setImageCollection([
@@ -182,9 +187,12 @@ const CreateNewProduct = ({
             console.error("Server error: Please try again later");
           }
         }
+      } finally {
+        setLoading(false); // ENABLE BUTTON AGAIN
       }
     } else {
       console.log("Form validation failed - please fix errors and try again");
+      setLoading(false);
     }
   };
 
@@ -222,11 +230,12 @@ const CreateNewProduct = ({
             className="p-1 outline-none border border-zinc-200 bg-white"
           ></textarea>
           {!exist.description && (
-            <span className="text-sm text-red-600">*description is required</span>
+            <span className="text-sm text-red-600">
+              *description is required
+            </span>
           )}
         </div>
-        
-        {/* ADD THIS DISCOUNT CHECKBOX */}
+
         <div className="flex items-center gap-2">
           <input
             type="checkbox"
@@ -254,12 +263,44 @@ const CreateNewProduct = ({
           imageCollection={imageCollection}
           setImageCollection={setImageCollection}
         />
+
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 p-2 cursor-pointer rounded-sm border border-zinc-200 bg-green-800 text-white"
+          disabled={loading}
+          className={`flex items-center justify-center gap-2 p-2 cursor-pointer rounded-sm border border-zinc-200 bg-green-800 text-white ${
+            loading ? "opacity-70 cursor-not-allowed" : ""
+          }`}
         >
-          <Plus size={20} />
-          <span>Create Product</span>
+          {loading ? (
+            <>
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+              <span>Creating...</span>
+            </>
+          ) : (
+            <>
+              <Plus size={20} />
+              <span>Create Product</span>
+            </>
+          )}
         </button>
       </form>
     </>
