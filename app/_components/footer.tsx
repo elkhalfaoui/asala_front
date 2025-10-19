@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
         </li>
         <li className="flex flex-col gap-4">
-          <h4 className="font-medium text-green">Entreprise</h4>
+          <h4 className="font-medium text-black">Entreprise</h4>
           <Link href="/" className="text-zinc-600">
             Accueil
           </Link>
@@ -63,7 +63,7 @@ const Footer = () => {
           </Link>
         </li>
         <li className="flex flex-col items-center lg:items-start gap-6">
-          <h4 className="font-medium text-green">Entrer en contact</h4>
+          <h4 className="font-medium text-black">Entrer en contact</h4>
           <p className="flex flex-col items-center md:flex-row gap-2 text-zinc-600">
             <Clock />
             <span>Disponible de 9h00 à 20h00</span>
@@ -88,7 +88,7 @@ const Footer = () => {
           href="https://github.com/elkhalfaoui"
           rel="noopener noreferrer"
           target="_blank"
-          className="inline-flex items-center gap-1 underline text-green"
+          className="inline-flex items-center gap-1 underline text-black"
         >
           <span>elkhalfaoui</span>
           <Github size={20} />
