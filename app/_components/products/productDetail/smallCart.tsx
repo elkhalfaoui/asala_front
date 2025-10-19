@@ -26,7 +26,7 @@ const SmallCart = ({
     >
       <div className="flex justify-between items-center mb-8 text-zinc-700">
         <h2 className="text-2xl">
-          <span className="text-green">Cart</span> Items{" "}
+          <span className="text-black">Cart</span> Items{" "}
           <span className="px-2 rounded-md bg-yellow text-white">
             {orders.length}
           </span>
@@ -78,7 +78,7 @@ const SmallCart = ({
                       })
                     }
                   />
-                  <h5 className="p-1 rounded-xs bg-green text-white">
+                  <h5 className="p-1 rounded-xs bg-black text-white">
                     Total:&nbsp;{order.price * order.quantity}
                   </h5>
                 </li>
@@ -88,7 +88,7 @@ const SmallCart = ({
       </ul>
       <Link
         href="/cart"
-        className="mt-auto mb-4 p-1 text-center cursor-pointer rounded-xs bg-green text-white"
+        className="mt-auto mb-4 p-1 text-center cursor-pointer rounded-xs bg-black text-white"
       >
         Check out
       </Link>

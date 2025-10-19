@@ -31,7 +31,7 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
         <li className="col-span-1 lg:col-span-5">
           <div className="flex justify-between items-center pb-5 border-b border-zinc-200">
             <h2 className="text-2xl text-zinc-700">
-              Votre <span className="text-emerald-800">Panier</span>
+              Votre <span className="text-black">Panier</span>
             </h2>
             <p className="text-xl text-zinc-600">
               {ordersInfo.length} Articles
@@ -51,7 +51,7 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
             ))}
           <Link
             href="/products?page=1"
-            className="w-fit flex items-center gap-2 p-2 text-emerald-800"
+            className="w-fit flex items-center gap-2 p-2 text-black"
           >
             <ArrowLeft size={16} />
             <span>Continuer les achats</span>
@@ -79,7 +79,7 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
             </li>
           </ul>
           <button
-            className="w-full flex items-center justify-center gap-2 p-2 cursor-pointer bg-emerald hover:scale-105 duration-200 bg-green text-white"
+            className="w-full flex items-center justify-center gap-2 p-2 cursor-pointer hover:scale-105 duration-200 bg-black text-white"
             onClick={() => setPassOrder(true)}
           >
             <ShoppingBag size={20} />
@@ -91,7 +91,7 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
         <Order ordersInfo={ordersInfo} setPassOrder={setPassOrder} />
       ) : passOrder && !ordersInfo.length ? (
         <article className="fixed w-full h-full z-[100] top-0 left-0 flex flex-col gap-2 items-center justify-center bg-black/20">
-          <p className="flex items-center gap-2 text-4xl text-green">
+          <p className="flex items-center gap-2 text-4xl text-black">
             <span>Your cart is empty</span>
             <ShoppingCart size={32} />
           </p>

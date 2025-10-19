@@ -117,7 +117,7 @@ const Order = ({
           />
         </div>
         <div className="flex items-center gap-2 mt-4">
-          <button className="w-3/4 p-2 text-center rounded-sm cursor-pointer bg-green text-white">
+          <button className="w-3/4 p-2 text-center rounded-sm cursor-pointer bg-black text-white">
             Confirm
           </button>
           <button

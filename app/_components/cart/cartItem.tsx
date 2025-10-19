@@ -27,7 +27,7 @@ const CartItem = ({
         />
         <Link
           href={`/products/${order.product_id}`}
-          className="flex flex-col gap-2 hover:text-green"
+          className="flex flex-col gap-2 hover:text-black"
         >
           <span>{order.title}</span>
           <div className="flex items-center gap-[1px]">
