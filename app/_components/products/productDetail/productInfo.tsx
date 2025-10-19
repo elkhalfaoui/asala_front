@@ -66,7 +66,7 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
     <>
       <SmallCart smallCart={smallCart} setSmallCart={setSmallCart} />
       <li className="col-span-1 flex flex-col">
-        <h2 className="text-2xl mb-0.5 text-green">{product?.title}</h2>
+        <h2 className="text-2xl mb-0.5 text-black">{product?.title}</h2>
         <div className="flex items-center gap-1 mb-2">
           <Star size={16} strokeWidth={3} className="text-yellow" />
           <Star size={16} strokeWidth={3} className="text-yellow" />
@@ -101,7 +101,7 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
                   className={`w-fit p-2 border cursor-pointer text-sm text-center rounded-md 
                     ${
                       selectedOption?.id === option.id
-                        ? "border-baack bg-green-100 text-black"
+                        ? "border-baack bg-zinc-200 text-black"
                         : "border-zinc-300 text-zinc-700"
                     }`}
                 >
@@ -212,7 +212,26 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
           </tbody>
         </table>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 items-center gap-4">
-          <Link href="/cart" className="w-full flex items-center justify-center gap-2 py-2 text-center rounded-xs cursor-pointer text-black bg-zinc-300 hover:scale-105 duration-300">
+          <Link
+            href="/cart"
+            className="w-full flex items-center justify-center gap-2 py-2 text-center rounded-xs cursor-pointer text-black bg-zinc-300 hover:scale-105 duration-300"
+            onClick={() => {
+              if (selectedOption) {
+                add_order({
+                  product_id: product.id,
+                  option_id: selectedOption.id,
+                  title: product.title,
+                  image: product.imageCollection.firstImage,
+                  rating: product.averageRating,
+                  dimension: selectedOption.dimension,
+                  price: getCurrentPrice(),
+                  quantity: quantity,
+                  total: quantity * getCurrentPrice(),
+                  cadreType: cadre,
+                });
+              }
+            }}
+          >
             <CreditCard size={24} />
             <span>Achat</span>
           </Link>
