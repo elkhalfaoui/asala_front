@@ -14,10 +14,10 @@ const ProductPage = async ({
       <div className="container mx-auto px-4">
         <Link
           href="/products?page=1"
-          className="flex items-center gap-2 mb-4 cursor-pointer text-green"
+          className="flex items-center gap-2 mb-4 cursor-pointer text-black"
         >
           <ChevronsLeft size={20} />
-          <span>Go back</span>
+          <span>Retour</span>
         </Link>
         <ProductDetail productId={productId} />
       </div>
