@@ -1,12 +1,19 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  CreditCard,
+  ShoppingCart,
+  Star,
+} from "lucide-react";
 import SmallCart from "./smallCart";
 import { useEffect, useState } from "react";
 import { Product } from "../../home/products";
 import { add_order } from "@/app/_store/actions";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
+import Link from "next/link";
 
 const mapDispatchToProps = {
   add_order,
@@ -42,8 +49,8 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
   // Calculate current price based on dimension and cadre
   const getCurrentPrice = () => {
     if (!selectedOption) return 0;
-    return cadre === "sans" 
-      ? selectedOption.withoutCadrePrice 
+    return cadre === "sans"
+      ? selectedOption.withoutCadrePrice
       : selectedOption.withCadrePrice;
   };
 
@@ -94,7 +101,7 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
                   className={`w-fit p-2 border cursor-pointer text-sm text-center rounded-md 
                     ${
                       selectedOption?.id === option.id
-                        ? "border-green bg-green-100 text-green"
+                        ? "border-baack bg-green-100 text-black"
                         : "border-zinc-300 text-zinc-700"
                     }`}
                 >
@@ -170,7 +177,7 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
 
           {selectedOption && (
             <>
-              <h3 className="w-fit text-2xl font-medium p-2 rounded-sm bg-green text-white">
+              <h3 className="w-fit text-2xl font-medium p-2 rounded-sm bg-black text-white">
                 {getCurrentPrice() * quantity}.00 DH
               </h3>
               <p className="line-through text-zinc-600">
@@ -204,29 +211,35 @@ const ProductInfo = ({ product, add_order }: ProductInfoProps) => {
             </tr>
           </tbody>
         </table>
-        <button
-          className="w-full flex items-center justify-center gap-2 py-2 text-center rounded-xs cursor-pointer text-white bg-green hover:scale-105 duration-300"
-          onClick={() => {
-            if (selectedOption) {
-              add_order({
-                product_id: product.id,
-                option_id: selectedOption.id,
-                title: product.title,
-                image: product.imageCollection.firstImage,
-                rating: product.averageRating,
-                dimension: selectedOption.dimension,
-                price: getCurrentPrice(),
-                quantity: quantity,
-                total: quantity * getCurrentPrice(),
-                cadreType: cadre, // Add this line
-              });
-            }
-            setSmallCart(true);
-          }}
-        >
-          <ShoppingCart size={24} />
-          <span>Add to Cart</span>
-        </button>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+          <Link href="/cart" className="w-full flex items-center justify-center gap-2 py-2 text-center rounded-xs cursor-pointer text-black bg-zinc-300 hover:scale-105 duration-300">
+            <CreditCard size={24} />
+            <span>Achat</span>
+          </Link>
+          <button
+            className="w-full flex items-center justify-center gap-2 py-2 text-center rounded-xs cursor-pointer text-white bg-black hover:scale-105 duration-300"
+            onClick={() => {
+              if (selectedOption) {
+                add_order({
+                  product_id: product.id,
+                  option_id: selectedOption.id,
+                  title: product.title,
+                  image: product.imageCollection.firstImage,
+                  rating: product.averageRating,
+                  dimension: selectedOption.dimension,
+                  price: getCurrentPrice(),
+                  quantity: quantity,
+                  total: quantity * getCurrentPrice(),
+                  cadreType: cadre,
+                });
+              }
+              setSmallCart(true);
+            }}
+          >
+            <ShoppingCart size={24} />
+            <span>Ajouter au panier</span>
+          </button>
+        </div>
       </li>
     </>
   );

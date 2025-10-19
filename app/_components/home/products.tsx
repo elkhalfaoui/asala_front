@@ -71,14 +71,14 @@ const Products = () => {
         <h2 className="relative text-xl font-light w-fit mx-auto mb-4 before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-8 before:h-0.5 before:bg-yellow">
           Products
         </h2>
-        <h3 className="text-2xl text-center font-medium mb-4 text-green">
+        <h3 className="text-2xl text-center font-medium mb-4">
           Our Products Collections
         </h3>
         <ul className="flex items-center justify-start sm:justify-center gap-2 mb-8 overflow-x-scroll scrollbar-hide">
           <li
             className={`flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer border ${
               filter == "latest"
-                ? " border-green bg-green text-white"
+                ? " border-black bg-black text-white"
                 : "border-zinc-200"
             }`}
             onClick={() => setFilter("latest")}
@@ -89,7 +89,7 @@ const Products = () => {
           <li
             className={`flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer border ${
               filter == "best"
-                ? " border-green bg-green text-white"
+                ? " border-black bg-black text-white"
                 : "border-zinc-200"
             }`}
             onClick={() => setFilter("best")}
@@ -100,7 +100,7 @@ const Products = () => {
           <li
             className={`flex items-center gap-1 py-1 px-2 rounded-full cursor-pointer border ${
               filter == "featured"
-                ? " border-green bg-green text-white"
+                ? " border-black bg-black text-white"
                 : "border-zinc-200"
             }`}
             onClick={() => setFilter("featured")}
