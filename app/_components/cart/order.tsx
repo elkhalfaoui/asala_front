@@ -13,6 +13,7 @@ interface CheckoutData {
     productId: string;
     optionId: number;
     quantity: number;
+    price: number;
     cadreType: string;
   }[];
 }
@@ -41,6 +42,7 @@ const Order = ({
           productId: order.product_id,
           optionId: order.option_id,
           quantity: order.quantity,
+          price: order.price,
           cadreType: order.cadreType.toLowerCase(),
         })),
       };

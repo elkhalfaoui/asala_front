@@ -6,11 +6,24 @@ import CartItem from "./cartItem";
 import { connect } from "react-redux";
 import { RootState } from "@/app/_store/store";
 import { OrderInfo } from "@/app/_store/reducer";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Order from "./order";
 
 const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
   const [passOrder, setPassOrder] = useState(false);
+
+  // Calculate dynamic totals
+  const { totalItems, subtotal, total } = useMemo(() => {
+    const totalItems = ordersInfo.reduce((sum, order) => sum + order.quantity, 0);
+    const subtotal = ordersInfo.reduce(
+      (sum, order) => sum + order.price * order.quantity,
+      0
+    );
+    const shippingCost = 0; // Free shipping
+    const total = subtotal + shippingCost;
+
+    return { totalItems, subtotal, total };
+  }, [ordersInfo]);
 
   return (
     <section className="my-16">
@@ -52,9 +65,9 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
           <ul className="flex flex-col gap-2 py-4 px-2">
             <li className="flex justify-between">
               <p>
-                Articles <span>4</span>
+                Articles <span>{totalItems}</span>
               </p>
-              <p>88.00 DH</p>
+              <p>{subtotal.toFixed(2)} DH</p>
             </li>
             <li className="flex justify-between">
               <p className="text-zinc-600">Frais d&apos;expédition</p>
@@ -62,7 +75,7 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
             </li>
             <li className="flex justify-between py-2">
               <p className="font-medium">Totale</p>
-              <p className="font-medium">999.00 DH</p>
+              <p className="font-medium">{total.toFixed(2)} DH</p>
             </li>
           </ul>
           <button
@@ -75,9 +88,7 @@ const Cart = ({ ordersInfo }: { ordersInfo: OrderInfo[] }) => {
         </li>
       </ul>
       {passOrder && ordersInfo.length ? (
-        
         <Order ordersInfo={ordersInfo} setPassOrder={setPassOrder} />
-
       ) : passOrder && !ordersInfo.length ? (
         <article className="fixed w-full h-full z-[100] top-0 left-0 flex flex-col gap-2 items-center justify-center bg-black/20">
           <p className="flex items-center gap-2 text-4xl text-green">

@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import CreateNewProduct from "./createNewProduct";
 import axiosClient from "@/app/_lib/axiosClient";
+import Image from "next/image";
 
 export interface Category {
   id: number;
@@ -137,7 +138,7 @@ const ProductsSection = () => {
                   key={product.id}
                   className="flex flex-col gap-2 p-3 border border-zinc-200 rounded-sm bg-white shadow-sm relative"
                 >
-                  <img
+                  <Image
                     src={product.mainImage}
                     alt={product.title}
                     className="w-full h-48 object-cover rounded-sm"

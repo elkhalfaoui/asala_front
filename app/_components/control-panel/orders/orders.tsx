@@ -12,7 +12,7 @@ interface Order {
   productTitle: string;
   optionId: string;
   optionDimension: string;
-  optionPrice: number;
+  price: number;
   quantity: number;
   mainImage: string;
   sellerFullName: string;
@@ -24,6 +24,7 @@ interface ClientWithOrders {
   address: string;
   phone: string;
   ordersStatus: string;
+  orderDate: string;
   orders: Order[];
 }
 
@@ -64,7 +65,7 @@ const Orders = () => {
 
     if (status == "order confirmed") {
       const totalGlobal = client.orders.reduce(
-        (acc, cur) => acc + cur.optionPrice * cur.quantity,
+        (acc, cur) => acc + cur.price * cur.quantity,
         0
       );
 
@@ -81,9 +82,9 @@ const Orders = () => {
             `${`${appUrl}/products/${order.productId}` || ""}\n` +
             `• Produit : ${order.productTitle}\n` +
             `• Dimensions : ${order.optionDimension}\n` +
-            `• Prix : ${order.optionPrice} MAD\n` +
+            `• Prix : ${order.price} MAD\n` +
             `• Quantité : ${order.quantity}\n` +
-            `• Total : ${order.optionPrice * order.quantity} MAD\n`
+            `• Total : ${order.price * order.quantity} MAD\n`
           );
         })
         .join("\n");
@@ -180,12 +181,12 @@ const Orders = () => {
                     </Link>
                   </div>
                   <p className="col-span-1 px-2">{order.optionDimension}</p>
-                  <p className="col-span-1 px-2">{order.optionPrice}.00 DH</p>
+                  <p className="col-span-1 px-2">{order.price}.00 DH</p>
                   <p className="col-span-1 w-10 py-1 text-center border border-zinc-200">
                     {order.quantity}
                   </p>
                   <p className="col-span-1 px-2">
-                    {order.optionPrice * order.quantity}.00 DH
+                    {order.price * order.quantity}.00 DH
                   </p>
                 </li>
               ))}
@@ -193,7 +194,7 @@ const Orders = () => {
                 <h4 className="p-2 rounded-md bg-green text-white">
                   Total:{" "}
                   {client.orders.reduce(
-                    (acc, cur) => acc + cur.optionPrice * cur.quantity,
+                    (acc, cur) => acc + cur.price * cur.quantity,
                     0
                   )}
                   .00 DH
