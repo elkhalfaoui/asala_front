@@ -1,43 +1,125 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { SimpleProduct } from "../../home/products";
+import axiosClient from "@/app/_lib/axiosClient";
+import ProductItem from "../../home/productItem";
 
-const RelatedProducts = () => {
+// Type for category
+interface Category {
+  id: number;
+  title: string;
+}
+
+// Default product for filling empty slots
+const createDefaultProduct = (index: number): SimpleProduct => ({
+  id: `default-${index}`,
+  title: "Product Coming Soon",
+  mainImage: "/placeholder-product.jpg",
+  averageRating: 0,
+  startingPrice: 0,
+  discount: false,
+  categories: [],
+  createdDate: new Date().toISOString(),
+  sellingCount: 0,
+});
+
+interface CarouselItem {
+  id: number;
+  pos: number;
+  product: SimpleProduct;
+}
+
+const RelatedProducts = ({
+  id,
+  categories,
+}: {
+  id: string | undefined;
+  categories: { id: number; title: string }[] | undefined;
+}) => {
+  const [products, setProducts] = useState<SimpleProduct[]>([]);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const [carts, setCarts] = useState([
-    { id: 0, pos: 0, title: "1", color: "#38bdf8" }, // sky
-    { id: 1, pos: 1, title: "2", color: "#facc15" }, // yellow
-    { id: 2, pos: 2, title: "3", color: "#4ade80" }, // green
-    { id: 3, pos: 3, title: "4", color: "#fb7185" }, // rose
-    { id: 4, pos: 4, title: "5", color: "#c084fc" }, // purple
-    { id: 5, pos: 5, title: "6", color: "#fb923c" }, // orange
-    { id: 6, pos: 6, title: "7", color: "#38bdf8" }, // sky
-    { id: 7, pos: 7, title: "8", color: "#facc15" }, // yellow
-    { id: 8, pos: 8, title: "9", color: "#4ade80" }, // green
-    { id: 9, pos: 9, title: "10", color: "#fb7185" }, // rose
-    { id: 10, pos: 10, title: "11", color: "#c084fc" }, // purple
-    { id: 11, pos: 11, title: "12", color: "#fb923c" }, // orange
-  ]);
+  const [carouselItems, setCarouselItems] = useState<CarouselItem[]>([]);
+
   const CartsCount = 12;
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axiosClient.get("/guest/products");
+        setProducts(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter and prepare products for carousel
+  const filteredProducts = useMemo(() => {
+    if (!products.length || !categories?.length) return [];
+
+    const categoryIds = categories.map((cat) => cat.id);
+
+    // Filter products by categories and exclude current product
+    const filtered = products.filter((product) => {
+      // Exclude current product
+      if (product.id === id) return false;
+
+      // Check if product has any matching category
+      // Since SimpleProduct already has categories property, we can access it directly
+      return product.categories?.some((cat: Category) =>
+        categoryIds.includes(cat.id)
+      );
+    });
+
+    // Take first 12 or fill with defaults
+    const result: SimpleProduct[] = [];
+    for (let i = 0; i < CartsCount; i++) {
+      if (i < filtered.length) {
+        result.push(filtered[i]);
+      } else {
+        result.push(createDefaultProduct(i));
+      }
+    }
+
+    return result;
+  }, [products, categories, id]);
+
+  // Initialize carousel items when filtered products change
+  useEffect(() => {
+    if (filteredProducts.length > 0) {
+      setCarouselItems(
+        filteredProducts.map((product, index) => ({
+          id: index,
+          pos: index,
+          product,
+        }))
+      );
+    }
+  }, [filteredProducts]);
+
   const toRight = () => {
-    setCarts(
-      carts.map((cart) => ({
-        ...cart,
-        pos: cart.pos == 0 ? CartsCount - 1 : cart.pos - 1,
+    setCarouselItems((items: CarouselItem[]) =>
+      items.map((item) => ({
+        ...item,
+        pos: item.pos === 0 ? CartsCount - 1 : item.pos - 1,
       }))
     );
   };
+
   const toLeft = () => {
-    setCarts(
-      carts.map((cart) => ({
-        ...cart,
-        pos: cart.pos == CartsCount - 1 ? 0 : cart.pos + 1,
+    setCarouselItems((items: CarouselItem[]) =>
+      items.map((item) => ({
+        ...item,
+        pos: item.pos === CartsCount - 1 ? 0 : item.pos + 1,
       }))
     );
   };
+
   useEffect(() => {
     if (touchStart > touchEnd && touchEnd !== 0) {
       toRight();
@@ -45,48 +127,51 @@ const RelatedProducts = () => {
     if (touchStart < touchEnd && touchEnd !== 0) {
       toLeft();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [touchEnd]);
+
+  if (carouselItems.length === 0) {
+    return null;
+  }
+
   return (
     <div className="py-20">
       <div className="container mx-auto px-4 md:px-2">
         <div className="flex justify-between mb-4 mx-4">
           <button
-            className="py-2 px-4 rounded-full bg-zinc-200"
+            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors"
             onClick={toLeft}
           >
-            <ChevronLeft size={20}/>
+            <ChevronLeft size={20} />
           </button>
           <button
-            className="py-2 px-4 rounded-full bg-zinc-200"
+            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors"
             onClick={toRight}
           >
-            <ChevronRight size={20}/>
+            <ChevronRight size={20} />
           </button>
         </div>
         <div
           className="w-full overflow-hidden"
           onTouchStart={(e) => {
             setTouchStart(e.changedTouches[0].screenX);
-            console.log(e.changedTouches[0].screenX);
           }}
           onTouchEnd={(e) => {
             setTouchEnd(e.changedTouches[0].screenX);
-            console.log(e.changedTouches[0].screenX);
           }}
         >
-          <ul className="relative w-[600%] md:w-[400%] lg:w-[240%] -translate-x-6/12 md:-translate-x-5/12 lg:-translate-x-4/12 h-16 -z-10 bg-red-300">
-            {carts.map((cart) => (
+          <ul className="relative w-[600%] md:w-[400%] lg:w-[240%] -translate-x-6/12 md:-translate-x-5/12 lg:-translate-x-4/12 min-h-[300px]">
+            {carouselItems.map((item) => (
               <li
-                key={cart.id}
-                className={`absolute h-full w-1/12 bg-yellow-400 duration-500`}
+                key={item.id}
+                className="absolute w-1/12 duration-500 px-1"
                 style={{
-                  backgroundColor: cart.color,
-                  left: `${(cart.pos / CartsCount) * 100}%`,
+                  left: `${(item.pos / CartsCount) * 100}%`,
                   zIndex:
-                    cart.pos == 0 ? -1 : cart.pos == CartsCount - 1 ? -1 : 10,
+                    item.pos === 0 ? -1 : item.pos === CartsCount - 1 ? -1 : 10,
                 }}
               >
-                {cart.title}
+                <ProductItem product={item.product} />
               </li>
             ))}
           </ul>
@@ -95,4 +180,5 @@ const RelatedProducts = () => {
     </div>
   );
 };
+
 export default RelatedProducts;

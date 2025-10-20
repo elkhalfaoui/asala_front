@@ -109,7 +109,7 @@ const Products = () => {
             <span>Featured&nbsp;Products</span>
           </li>
         </ul>
-        <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
           {productsList &&
             productsList.map((product: SimpleProduct) => (
               <ProductItem key={product.id} product={product} />

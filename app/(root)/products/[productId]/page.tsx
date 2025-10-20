@@ -1,5 +1,4 @@
 import ProductDetail from "@/app/_components/products/productDetail/productDetail";
-import RelatedProducts from "@/app/_components/products/productDetail/relatedProducts";
 import { ChevronsLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -21,7 +20,6 @@ const ProductPage = async ({
           <span>Retour</span>
         </Link>
         <ProductDetail productId={productId} />
-        <RelatedProducts />
       </div>
     </section>
   );
