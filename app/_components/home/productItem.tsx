@@ -20,7 +20,7 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
         />
 
         {product.discount && (
-          <div className="absolute top-2 right-2 p-2 bg-red-600 text-white">-15%</div>
+          <div className="absolute top-2 right-2 px-2 py-1 rounded-sm bg-red-600 text-white">-15%</div>
         )}
 
         {/* Product Info */}
