@@ -21,12 +21,7 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
 
         {/* Bookmark Discount Badge */}
         {product.discount && (
-          <div className="absolute top-0 right-4">
-            <div className="relative bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-b-sm">
-              -{product.discount}%{/* Triangle bottom */}
-              <div className="absolute bottom-[-8px] right-0 w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-red-600"></div>
-            </div>
-          </div>
+          <div className="absolute bottom-[-8px] right-0 w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-transparent"></div>
         )}
 
         {/* Product Info */}
