@@ -19,9 +19,13 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg"
         />
 
-        {/* Bookmark Discount Badge */}
         {product.discount && (
-          <div className="absolute bottom-[-8px] right-0 w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-transparent"></div>
+          <div className="absolute top-0 right-4">
+            <div className="relative bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-t-md">
+              -{product.discount}%{/* Cut notch (Twitter-style) */}
+              <div className="absolute bottom-[-6px] left-0 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-white"></div>
+            </div>
+          </div>
         )}
 
         {/* Product Info */}
