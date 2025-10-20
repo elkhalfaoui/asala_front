@@ -20,12 +20,7 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
         />
 
         {product.discount && (
-          <div className="absolute top-0 right-4">
-            <div className="relative bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-t-md">
-              -{product.discount}%{/* Cut notch (Twitter-style) */}
-              <div className="absolute bottom-[-6px] left-0 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-white"></div>
-            </div>
-          </div>
+          <div className="absolute top-2 right-2 p-2 bg-red-600 text-white">-15%</div>
         )}
 
         {/* Product Info */}
