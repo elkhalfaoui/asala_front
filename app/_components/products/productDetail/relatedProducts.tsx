@@ -70,7 +70,6 @@ const RelatedProducts = ({
       if (product.id === id) return false;
 
       // Check if product has any matching category
-      // Since SimpleProduct already has categories property, we can access it directly
       return product.categories?.some((cat: Category) =>
         categoryIds.includes(cat.id)
       );
@@ -130,22 +129,18 @@ const RelatedProducts = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [touchEnd]);
 
-  if (carouselItems.length === 0) {
-    return null;
-  }
-
   return (
     <div className="py-20">
       <div className="container mx-auto px-4 md:px-2">
         <div className="flex justify-between mb-4 mx-4">
           <button
-            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors"
+            className="py-2 px-4 rounded-full bg-zinc-200"
             onClick={toLeft}
           >
             <ChevronLeft size={20} />
           </button>
           <button
-            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors"
+            className="py-2 px-4 rounded-full bg-zinc-200"
             onClick={toRight}
           >
             <ChevronRight size={20} />
@@ -155,16 +150,18 @@ const RelatedProducts = ({
           className="w-full overflow-hidden"
           onTouchStart={(e) => {
             setTouchStart(e.changedTouches[0].screenX);
+            console.log(e.changedTouches[0].screenX);
           }}
           onTouchEnd={(e) => {
             setTouchEnd(e.changedTouches[0].screenX);
+            console.log(e.changedTouches[0].screenX);
           }}
         >
-          <ul className="relative w-[600%] md:w-[400%] lg:w-[240%] -translate-x-6/12 md:-translate-x-5/12 lg:-translate-x-4/12 min-h-[300px]">
+          <ul className="relative w-[600%] md:w-[400%] lg:w-[240%] -translate-x-6/12 md:-translate-x-5/12 lg:-translate-x-4/12 h-16 -z-10 bg-red-300">
             {carouselItems.map((item) => (
               <li
                 key={item.id}
-                className="absolute w-1/12 duration-500 px-1"
+                className="absolute h-full w-1/12 bg-yellow-400 duration-500"
                 style={{
                   left: `${(item.pos / CartsCount) * 100}%`,
                   zIndex:
