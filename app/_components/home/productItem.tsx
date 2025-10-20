@@ -21,10 +21,10 @@ const ProductItem = ({ product }: { product: SimpleProduct }) => {
 
         {/* Bookmark Discount Badge */}
         {product.discount && (
-          <div className="absolute top-0 right-3 w-8 h-10 bg-red-600 rounded-b-md flex items-center justify-center text-[10px] font-bold text-white shadow-md">
+          <div className="absolute top-0 right-4 w-[120px] h-[60px] bg-red-600 flex items-center justify-center text-white font-bold text-sm">
             -16%
-            <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[16px] border-l-transparent border-t-[10px] border-t-red-800"></div>
-            <div className="absolute bottom-0 right-0 w-0 h-0 border-r-[16px] border-r-transparent border-t-[10px] border-t-red-800"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[60px] border-l-transparent border-t-[20px] border-t-red-800"></div>
+            <div className="absolute bottom-0 right-0 w-0 h-0 border-r-[60px] border-r-transparent border-t-[20px] border-t-red-800"></div>
           </div>
         )}
 
