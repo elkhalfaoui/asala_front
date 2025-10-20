@@ -139,13 +139,13 @@ const RelatedProducts = ({
       <div className="container mx-auto px-4 md:px-2">
         <div className="flex justify-between mb-4 mx-4">
           <button
-            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors"
+            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors cursor-pointer"
             onClick={toLeft}
           >
             <ChevronLeft size={20} />
           </button>
           <button
-            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors"
+            className="py-2 px-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors cursor-pointer"
             onClick={toRight}
           >
             <ChevronRight size={20} />
@@ -164,7 +164,7 @@ const RelatedProducts = ({
             {carouselItems.map((item) => (
               <li
                 key={item.id}
-                className="absolute w-1/12 duration-500 px-1"
+                className="absolute w-1/12 duration-500 px-1 bg-white"
                 style={{
                   left: `${(item.pos / CartsCount) * 100}%`,
                   zIndex:
