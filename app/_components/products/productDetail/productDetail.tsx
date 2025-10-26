@@ -26,8 +26,8 @@ const ProductDetail = ({ productId }: { productId: string }) => {
 
   return (
     <>
-      <ul className="relative grid grid-cols-1 md:grid-cols-2 gap-12">
-        {product && (
+      {product && (
+        <ul className="relative grid grid-cols-1 md:grid-cols-2 gap-12">
           <ImagesGrid
             imagesCollection={[
               product.imageCollection.mainImage,
@@ -36,10 +36,11 @@ const ProductDetail = ({ productId }: { productId: string }) => {
               product.imageCollection.thirdImage,
             ]}
           />
-        )}
-        {product && <ProductInfo product={product} />}
-        <RelatedProducts id={product?.id} categories={product?.categories} />
-      </ul>
+
+          <ProductInfo product={product} />
+          <RelatedProducts id={product?.id} categories={product?.categories} />
+        </ul>
+      )}
     </>
   );
 };

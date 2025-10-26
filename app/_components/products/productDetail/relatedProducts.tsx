@@ -135,7 +135,7 @@ const RelatedProducts = ({
   }
 
   return (
-    <div className="col-span-2 py-20">
+    <li className="md:col-span-2 py-20">
       <div className="container mx-auto px-4 md:px-2">
         <div className="flex justify-between mb-4 mx-4">
           <button
@@ -177,7 +177,7 @@ const RelatedProducts = ({
           </ul>
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 

@@ -19,7 +19,7 @@ const SmallCart = ({
   setSmallCart: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <section
+    <li
       className={`fixed top-16 h-[calc(100dvh-64px)] w-full md:w-md z-20 py-4 px-8 flex flex-col rounded-xl md:rounded-none md:rounded-tl-xl md:rounded-bl-xl duration-300 border border-zinc-200 bg-white ${
         smallCart ? "right-0" : "-right-full"
       }`}
@@ -92,7 +92,7 @@ const SmallCart = ({
       >
         Check out
       </Link>
-    </section>
+    </li>
   );
 };
 

@@ -242,7 +242,7 @@ const ProductsOptions = ({
                     withoutCadrePrice:
                       Number(withoutCadrePriceRef.current?.value) ?? 0,
                     withCadrePrice:
-                      Number(withoutCadrePriceRef.current?.value) ?? 0,
+                      Number(withCadrePriceRef.current?.value) ?? 0,
                     type: optionType ? OptionType.PACK : OptionType.SOLO,
                     selected: true,
                   },
